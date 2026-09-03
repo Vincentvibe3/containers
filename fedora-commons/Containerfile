@@ -5,11 +5,11 @@ RUN dnf install -y \
 	fish \
 	wlroots \
 	xsel \
-	cargo \ 
-	tmux \ 
 	git \
 	curl \
 	wget \
+	development-tools \
+	tmux
 
 RUN mkdir /usr/share/container-setup
 
