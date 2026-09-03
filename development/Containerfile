@@ -1,5 +1,7 @@
 FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 
+RUN type=tmpfs,dst=/ chmod +x /add-adoptium.sh && /add-adoptium.sh
+
 # Install java in the same step
 # needs the && because the repo needs to be installed first
 RUN dnf install -y \
@@ -8,8 +10,8 @@ RUN dnf install -y \
     rustup \
     gcc \
     nodejs \
-    libatomic \
-    adoptium-termurin-java-repository 
+    libatomic 
+
 
 RUN sudo dnf install -y \
     termurin-21-jdk \

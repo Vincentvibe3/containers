@@ -1,5 +1,7 @@
 FROM registry.fedoraproject.org/fedora-toolbox:latest
 
+RUN type=tmpfs,dst=/ chmod +x /add-rpm-fusion.sh && /add-rpm-fusion.sh
+
 RUN dnf install -y \
 	neovim \
 	fish \
