@@ -8,7 +8,6 @@ RUN dnf install -y \
 	git \
 	curl \
 	wget \
-	development-tools \
 	tmux
 
 RUN mkdir /usr/share/container-setup
