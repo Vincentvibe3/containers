@@ -63,6 +63,7 @@ jobs:
           - development
           - matlab
           - latex
+          - tools
           
     steps:
       - name: Checkout
