@@ -1,0 +1,22 @@
+FROM registry.fedoraproject.org/fedora-toolbox:latest
+
+RUN dnf install -y \
+	neovim \
+	fish \
+	wlroots \
+	xsel \
+	cargo \ 
+	tmux \ 
+	git \
+	curl \
+	wget \
+	development-tools
+
+RUN mkdir /usr/share/container-setup
+
+COPY setup /usr/share/container-setup/
+
+RUN chmod +x /usr/share/container-setup/init.sh && chmod +x /usr/share/container-setup/install-brew.sh
+
+# Make all init-scripts executable
+RUN /usr/share/container-setup/chmod-setup.sh

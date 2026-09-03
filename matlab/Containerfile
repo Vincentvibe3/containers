@@ -1,0 +1,27 @@
+ARG UBUNTU_VERSION=24.04
+ARG MATLAB_VERSION=r2026a
+
+FROM docker.io/alpine:3.14 as deps_download
+
+ARG UBUNTU_VERSION
+ARG MATLAB_VERSION
+
+RUN apk add --no-cache curl bash
+RUN mkdir /build
+RUN	curl -o /build/base-dependencies.txt "https://raw.githubusercontent.com/mathworks-ref-arch/container-images/refs/heads/main/matlab-deps/$MATLAB_VERSION/ubuntu$UBUNTU_VERSION/base-dependencies.txt"
+COPY matlab.desktop /build/matlab.desktop
+COPY fix-path.sh /build/fix-path.sh
+RUN chmod +x /build/fix-path.sh && /build/fix-path.sh
+
+FROM quay.io/toolbx/ubuntu-toolbox:${UBUNTU_VERSION}
+
+RUN --mount=type=bind,from=deps_download,src=/build,dst=/build \
+	apt-get update && xargs -a /build/base-dependencies.txt apt-get install -y 
+
+# Install useful tools for editing and for matlab 	
+RUN apt-get update && apt-get install -y neovim nano build-essential Libwlroots12t64 xsel
+
+RUN mkdir -p /usr/share/applications/
+
+# Copy desktop file
+COPY --from=deps_download /build/matlab.desktop /usr/share/applications/matlab.desktop

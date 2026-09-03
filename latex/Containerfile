@@ -1,0 +1,6 @@
+FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
+
+RUN dnf install -y \
+	texlive-scheme-full
+
+	

@@ -1,0 +1,21 @@
+FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
+
+# Install java in the same step
+# needs the && because the repo needs to be installed first
+RUN dnf install -y \
+	nmap \
+	iperf3 \
+	btop \ 
+	htop \
+	glow \
+	du-dust \
+	bat \
+	usbtop \
+	powertop \
+
+RUN python3 -m pip install -U "yt-dlp[default]"
+
+COPY setup /usr/share/container-setup/
+
+# Make all init-scripts executable
+RUN /usr/share/container-setup/chmod-setup.sh
