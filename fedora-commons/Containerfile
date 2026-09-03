@@ -14,7 +14,9 @@ RUN mkdir /usr/share/container-setup
 
 COPY setup /usr/share/container-setup/
 
-RUN chmod +x /usr/share/container-setup/init.sh && chmod +x /usr/share/container-setup/install-brew.sh
+RUN chmod +x /usr/share/container-setup/init.sh && \
+	chmod +x /usr/share/container-setup/install-brew.sh \
+	chmod +x /usr/share/container-setup/chmod-setup.sh
 
 # Make all init-scripts executable
 RUN /usr/share/container-setup/chmod-setup.sh
