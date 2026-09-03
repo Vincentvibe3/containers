@@ -10,7 +10,6 @@ RUN dnf install -y \
 	git \
 	curl \
 	wget \
-	development-tools
 
 RUN mkdir /usr/share/container-setup
 
