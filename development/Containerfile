@@ -3,16 +3,17 @@ FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 # Install java in the same step
 # needs the && because the repo needs to be installed first
 RUN dnf install -y \
-	go \
-	gcc \ 
-	clang \
-	nodejs \ 
-	libatomic \ 
-	rustup \
-	adoptium-termurin-java-repository \
-	&& sudo dnf install -y \ 
-	termurin-21-jdk \
-	termurin-25-jdk 
+    go \
+    clang \
+    rustup \
+    gcc \
+    nodejs \
+    libatomic \
+    adoptium-termurin-java-repository 
+
+RUN sudo dnf install -y \
+    termurin-21-jdk \
+    termurin-25-jdk 
 
 
 COPY setup /usr/share/container-setup/

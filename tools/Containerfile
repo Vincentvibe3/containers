@@ -5,13 +5,13 @@ FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 RUN dnf install -y \
 	nmap \
 	iperf3 \
-	btop \ 
 	htop \
 	glow \
 	du-dust \
 	bat \
 	usbtop \
 	powertop \
+	btop 
 
 RUN python3 -m pip install -U "yt-dlp[default]"
 
