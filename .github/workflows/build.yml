@@ -43,7 +43,7 @@ jobs:
       with:
         context: ./fedora-commons
         push: true
-        file: ./Containerfile
+        file: ./fedora-commons/Containerfile
         tags: |
           ghcr.io/vincentvibe3/fedora-toolbox-commons:latest, ghcr.io/vincentvibe3/fedora-toolbox-commons:${{github.sha}}
   
@@ -84,6 +84,6 @@ jobs:
         with:
           context: ./${{matrix.containers}}
           push: true
-          file: ./Containerfile
+          file: ./${{matrix.containers}}/Containerfile
           tags: |
             ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
