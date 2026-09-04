@@ -16,12 +16,9 @@ RUN dnf install -y \
     rustup \
     gcc \
     nodejs \
-    libatomic 
-
-
-RUN sudo dnf install -y \
-    termurin-21-jdk \
-    termurin-25-jdk 
+    libatomic \
+    temurin-21-jdk \
+    temurin-25-jdk 
 
 
 COPY setup /usr/share/container-setup/
