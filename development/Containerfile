@@ -1,4 +1,4 @@
-FROM scratch as copy_repo
+FROM docker.io/alpine:latest
 
 COPY add-adoptium.sh /add-adoptium.sh
 RUN chmod +x /add-adoptium.sh
