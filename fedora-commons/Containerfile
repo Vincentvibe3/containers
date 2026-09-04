@@ -1,6 +1,6 @@
 FROM scratch as copy_repo
 
-COPY --chmod=u=rwX,go=rX add-rpm-fusion.sh /add-rpm-fusion.sh
+COPY --chmod=777 add-rpm-fusion.sh /add-rpm-fusion.sh
 
 FROM registry.fedoraproject.org/fedora-toolbox:latest
 

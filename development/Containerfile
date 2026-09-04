@@ -1,6 +1,6 @@
 FROM scratch as copy_repo
 
-COPY --chmod=u=rwX,go=rX add-adoptium.sh /add-adoptium.sh
+COPY --chmod=777 add-adoptium.sh /add-adoptium.sh
 
 FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 
