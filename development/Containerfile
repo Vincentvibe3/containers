@@ -1,6 +1,11 @@
+FROM scratch as copy_repo
+
+COPY --chmod=u=rwX,go=rX add-adoptium.sh /add-adoptium.sh
+
 FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 
-RUN type=tmpfs,dst=/ chmod +x /add-adoptium.sh && /add-adoptium.sh
+RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
+    /ctx/add-adoptium.sh
 
 # Install java in the same step
 # needs the && because the repo needs to be installed first

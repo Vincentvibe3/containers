@@ -1,6 +1,12 @@
+FROM scratch as copy_repo
+
+COPY --chmod=u=rwX,go=rX add-rpm-fusion.sh /add-rpm-fusion.sh
+
 FROM registry.fedoraproject.org/fedora-toolbox:latest
 
-RUN type=tmpfs,dst=/ chmod +x /add-rpm-fusion.sh && /add-rpm-fusion.sh
+RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
+    /ctx/add-rpm-fusion.sh
+
 
 RUN dnf install -y \
 	neovim \
