@@ -6,7 +6,7 @@ RUN chmod +x /add-rpm-fusion.sh
 FROM registry.fedoraproject.org/fedora-toolbox:latest
 
 RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
-    chmod +x /ctx/add-rpm-fusion.sh && /ctx/add-rpm-fusion.sh
+    /ctx/add-rpm-fusion.sh
 
 
 RUN dnf install -y \
