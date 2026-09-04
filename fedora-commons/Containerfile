@@ -1,4 +1,4 @@
-FROM docker.io/alpine:latest
+FROM docker.io/alpine:latest AS copy_repo
 
 COPY add-rpm-fusion.sh /add-rpm-fusion.sh
 RUN chmod +x /add-rpm-fusion.sh
