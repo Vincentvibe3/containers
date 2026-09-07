@@ -4,17 +4,23 @@
 
 if [[ ! -f /etc/.distrobox-ready ]]; then
 
-	sudo touch /etc/.distrobox-ready
+	su $USER -c "touch /etc/.distrobox-ready"
 
-	/usr/share/container-setup/install-brew.sh
+	su $USER -c /usr/share/container-setup/install-brew.sh
 
 	# Call other init scripts
 
 	for file in /usr/share/container-setup/init-scripts/*.sh; do
 		if [[ -f $file ]]; then
-			echo "executing $file as $(whoami)" >> ~/distroboxlog
-			sudo chmod +x $file
+			chmod +x $file
 			$file
+		fi
+	done
+
+	for file in /usr/share/container-setup/user-init-scripts/*.sh; do
+		if [[ -f $file ]]; then
+			chmod +x $file
+			su $USER -c $file
 		fi
 	done
 

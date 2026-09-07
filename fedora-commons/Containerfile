@@ -3,11 +3,14 @@ FROM docker.io/alpine:latest AS copy_repo
 COPY add-rpm-fusion.sh /add-rpm-fusion.sh
 RUN chmod +x /add-rpm-fusion.sh
 
+
+
 FROM registry.fedoraproject.org/fedora-toolbox:latest
 
 RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
     /ctx/add-rpm-fusion.sh
 
+COPY --from=ghcr.io/ublue-os/brew:latest /system_files /
 
 RUN dnf install -y \
 	neovim \
@@ -24,6 +27,8 @@ RUN dnf install -y \
 RUN mkdir /usr/share/container-setup
 
 COPY setup /usr/share/container-setup/
+
+RUN /usr/share/container-setup/brew-config.sh
 
 RUN chmod +x /usr/share/container-setup/init.sh
 RUN	chmod +x /usr/share/container-setup/install-brew.sh 
