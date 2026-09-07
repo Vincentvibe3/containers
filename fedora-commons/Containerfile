@@ -28,6 +28,7 @@ RUN mkdir /usr/share/container-setup
 
 COPY setup /usr/share/container-setup/
 
+RUN chmod +x /usr/share/container-setup/brew-config.sh
 RUN /usr/share/container-setup/brew-config.sh
 
 RUN chmod +x /usr/share/container-setup/init.sh
