@@ -8,6 +8,7 @@
 
 for file in /usr/share/container-setup/init-scripts/*.sh; do
 	if [[ -f $file ]]; then
+		echo "executing $file as $(whoami)"
 		sudo chmod +x $file
 		$file
 	fi
