@@ -11,7 +11,8 @@ RUN dnf install -y \
 	bat \
 	usbtop \
 	powertop \
-	btop 
+	btop \
+	nethogs 
 
 RUN python3 -m pip install -U "yt-dlp[default]"
 
