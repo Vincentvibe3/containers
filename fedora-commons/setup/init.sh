@@ -2,14 +2,20 @@
 
 # Distrobox init hook to be placed at if /usr/share/container-setup/init.sh
 
-/usr/share/container-setup/install-brew.sh
+if [[ ! -f /etc/.distrobox-ready ]]; then
 
-# Call other init scripts
+	sudo touch /etc/.distrobox-ready
 
-for file in /usr/share/container-setup/init-scripts/*.sh; do
-	if [[ -f $file ]]; then
-		echo "executing $file as $(whoami)"
-		sudo chmod +x $file
-		$file
-	fi
-done
+	/usr/share/container-setup/install-brew.sh
+
+	# Call other init scripts
+
+	for file in /usr/share/container-setup/init-scripts/*.sh; do
+		if [[ -f $file ]]; then
+			echo "executing $file as $(whoami)" >> ~/distroboxlog
+			sudo chmod +x $file
+			$file
+		fi
+	done
+
+fi
