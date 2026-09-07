@@ -4,14 +4,22 @@
 
 if [[ ! -f /etc/.distrobox-ready ]]; then
 
-	su $USER -c "touch /etc/.distrobox-ready"
+	UID_MIN=$(grep -E '^UID_MIN' /etc/login.defs | awk '{print $NF}')
+	UID_MAX=$(grep -E '^UID_MAX' /etc/login.defs | awk '{print $NF}')
+	DISTROBOX_USER=$(getent passwd | awk -F: "\$3 >= $UID_MIN && \$3 <= $UID_MAX" | cut -d ":" -f1)
 
-	su $USER -c /usr/share/container-setup/install-brew.sh
+	touch /etc/.distrobox-ready
+	touch /tmp/distrobox_install.log
+
+	echo "Using user $DISTROBOX_USER to run user scripts" >> /tmp/distrobox_install.log
+
+	su $DISTROBOX_USER -c /usr/share/container-setup/install-brew.sh
 
 	# Call other init scripts
 
 	for file in /usr/share/container-setup/init-scripts/*.sh; do
 		if [[ -f $file ]]; then
+			echo "Ran $file as root" >> /tmp/distrobox_install.log
 			chmod +x $file
 			$file
 		fi
@@ -19,8 +27,9 @@ if [[ ! -f /etc/.distrobox-ready ]]; then
 
 	for file in /usr/share/container-setup/user-init-scripts/*.sh; do
 		if [[ -f $file ]]; then
+			echo "Ran $file as user" >> /tmp/distrobox_install.log
 			chmod +x $file
-			su $USER -c $file
+			su $DISTROBOX_USER -c $file
 		fi
 	done
 
