@@ -30,6 +30,7 @@ RUN dnf install -y \
 RUN mkdir /usr/share/container-setup
 
 COPY setup /usr/share/container-setup/
+COPY system_files /
 
 RUN chmod +x /usr/share/container-setup/init.sh
 RUN	chmod +x /usr/share/container-setup/chmod-setup.sh
