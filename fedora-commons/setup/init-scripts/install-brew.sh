@@ -10,7 +10,6 @@ if [[ ! -f /etc/.linuxbrew ]]; then
 	echo "Installing homebrew into container"
 	mkdir -p /tmp/homebrew
 	mkdir -p /home/linuxbrew
-	ls /usr/share
 	tar --zstd -xvf /usr/share/homebrew.tar.zst -C /tmp/homebrew
 	cp -R -n /tmp/homebrew/home/linuxbrew/.linuxbrew /home/linuxbrew
 	ls -la /home/linuxbrew/.linuxbrew

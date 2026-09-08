@@ -25,7 +25,8 @@ RUN dnf install -y \
 	wget \
 	tmux \
 	wl-clipboard \
-	python3-pip 
+	python3-pip \
+	zstd
 
 RUN mkdir /usr/share/container-setup
 
