@@ -1,11 +1,11 @@
 #!/bin/bash
 
-ls /home/ 1>&2
-ls /home/linuxbrew 1>&2
+ls /home/
+ls /home/linuxbrew
 
 # install homebrew
 if [[ ! -f /home/linuxbrew/.linuxbrew ]]; then
-	echo "Installing homebrew into container" 1>&2
+	echo "Installing homebrew into container"
 	mkdir -p /tmp/homebrew
 	mkdir -p /home/linuxbrew
 	tar --zstd -xf /usr/share/homebrew.tar.zst -C /tmp/homebrew
@@ -22,5 +22,5 @@ if [[ ! -f /home/linuxbrew/.linuxbrew ]]; then
 		fi
 	done
 else
-	echo "Homebrew already present" 1>&2
+	echo "Homebrew already present"
 fi
