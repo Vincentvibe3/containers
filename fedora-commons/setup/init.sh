@@ -23,7 +23,7 @@ if [[ ! -f /etc/.distrobox-ready ]]; then
 		if [[ -f $file ]]; then
 			echo "Ran $file as root" >> /tmp/distrobox_install.log
 			chmod +x $file
-			$file >> /tmp/distrobox_install.log
+			($file 2>&1) >> /tmp/distrobox_install.log
 		fi
 	done
 
@@ -31,7 +31,7 @@ if [[ ! -f /etc/.distrobox-ready ]]; then
 		if [[ -f $file ]]; then
 			echo "Ran $file as user" >> /tmp/distrobox_install.log
 			chmod +x $file
-			su $DISTROBOX_USER -c $file >> /tmp/distrobox_install.log
+			(su $DISTROBOX_USER -c $file 2>&1) >> /tmp/distrobox_install.log
 		fi
 	done
 
