@@ -11,7 +11,9 @@ if [[ ! -f /etc/.distrobox-ready ]]; then
 	touch /etc/.distrobox-ready
 	touch /tmp/distrobox_install.log
 
-	echo "Using user $DISTROBOX_USER to run user scripts"
+	echo "" > /tmp/distrobox_install.log
+
+	echo "Using user $DISTROBOX_USER to run user scripts" >> /tmp/distrobox_install.log
 
 	su $DISTROBOX_USER -c /usr/share/container-setup/install-brew.sh
 
@@ -19,7 +21,7 @@ if [[ ! -f /etc/.distrobox-ready ]]; then
 
 	for file in /usr/share/container-setup/init-scripts/*.sh; do
 		if [[ -f $file ]]; then
-			echo "Ran $file as root"
+			echo "Ran $file as root" >> /tmp/distrobox_install.log
 			chmod +x $file
 			$file
 		fi
@@ -27,7 +29,7 @@ if [[ ! -f /etc/.distrobox-ready ]]; then
 
 	for file in /usr/share/container-setup/user-init-scripts/*.sh; do
 		if [[ -f $file ]]; then
-			echo "Ran $file as user"
+			echo "Ran $file as user" >> /tmp/distrobox_install.log
 			chmod +x $file
 			su $DISTROBOX_USER -c $file
 		fi

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-ls /home/linuxbrew/linuxbrew
+ls /home/linuxbrew/linuxbrew >> /tmp/distrobox_install.log
 # install homebrew
 if [[ ! -f /home/linuxbrew/.linuxbrew ]]; then
-	echo "Installing homebrew into container"
+	echo "Installing homebrew into container" >> /tmp/distrobox_install.log
 	mkdir -p /tmp/homebrew
 	mkdir -p /home/linuxbrew
 	tar --zstd -xf /usr/share/homebrew.tar.zst -C /tmp/homebrew
@@ -20,5 +20,5 @@ if [[ ! -f /home/linuxbrew/.linuxbrew ]]; then
 		fi
 	done
 else
-	echo "Homebrew already present"
+	echo "Homebrew already present" >> /tmp/distrobox_install.log
 fi
