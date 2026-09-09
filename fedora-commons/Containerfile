@@ -26,7 +26,8 @@ RUN dnf install -y \
 	tmux \
 	wl-clipboard \
 	python3-pip \
-	zstd 
+	zstd \
+	pinentry-gnome3
 
 RUN mkdir /usr/share/container-setup
 

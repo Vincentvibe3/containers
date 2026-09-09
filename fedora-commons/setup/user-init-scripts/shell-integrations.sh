@@ -9,4 +9,7 @@ if [[ /home/$(whoami) != $HOME ]]; then
 		mkdir -p $HOME/.config
 		ln -s /home/$(whoami)/.config/starship.toml $HOME/.config/starship.toml
 	fi
+	if [[ ! -d $HOME/.gnupg ]]; then
+	 	ln -s /home/$(whoami)/.gnupg/ $HOME/.gnupg
+	fi
 fi
