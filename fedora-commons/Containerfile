@@ -27,7 +27,9 @@ RUN dnf install -y \
 	wl-clipboard \
 	python3-pip \
 	zstd \
-	pinentry-gnome3
+	pinentry-gnome3 \
+	libicu \
+	pass
 
 RUN mkdir /usr/share/container-setup
 
