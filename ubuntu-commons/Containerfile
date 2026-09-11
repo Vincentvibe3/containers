@@ -1,3 +1,8 @@
+FROM docker.io/alpine:latest AS copy_repo
+
+COPY brew-config.sh /brew-config.sh
+RUN chmod +x /brew-config.sh
+
 FROM quay.io/toolbx/ubuntu-toolbox:latest
 
 COPY --from=ghcr.io/ublue-os/brew:latest /system_files /
