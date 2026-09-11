@@ -1,0 +1,4 @@
+brew "starship"
+brew "zoxide"
+brew "fzf"
+cask "git-credential-manager"

@@ -1,0 +1,32 @@
+FROM quay.io/toolbx/ubuntu-toolbox:latest
+
+COPY --from=ghcr.io/ublue-os/brew:latest /system_files /
+RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
+    /ctx/brew-config.sh
+
+RUN apt-get update && apt-get install -y \
+	neovim \
+	fish \
+	libwlroots-0.19 \
+	xsel \
+	git \
+	curl \
+	wget \
+	tmux \
+	wl-clipboard \
+	python3-pip \
+	zstd \
+	pinentry-gnome3 \
+	libicu78 \
+	pass
+
+RUN mkdir /usr/share/container-setup
+
+COPY setup /usr/share/container-setup/
+COPY system_files /
+
+RUN chmod +x /usr/share/container-setup/init.sh
+RUN	chmod +x /usr/share/container-setup/chmod-setup.sh
+
+# Make all init-scripts executable
+RUN /usr/share/container-setup/chmod-setup.sh
