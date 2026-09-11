@@ -12,7 +12,7 @@ RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
 RUN apt-get update && apt-get install -y \
 	neovim \
 	fish \
-	libwlroots-0.19 \
+	libwlroots12t64 \
 	xsel \
 	git \
 	curl \
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
 	python3-pip \
 	zstd \
 	pinentry-gnome3 \
-	libicu78 \
+	libicu74 \
 	pass
 
 RUN mkdir /usr/share/container-setup
