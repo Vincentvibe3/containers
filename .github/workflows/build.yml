@@ -91,7 +91,7 @@ jobs:
         containers:
           # !! Add your recipes here
           - matlab
-          
+          - ubuntu-embedded-sdks
     steps:
       - name: Checkout
         uses: actions/checkout@v7
