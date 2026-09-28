@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=MATLAB
+Name=MATLAB MATLAB_VERSION
 Comment=Start MATLAB - The Language of Technical Computing
 Exec=/usr/local/MATLAB/MATLAB_VERSION/bin/matlab -desktop
 Icon=/usr/local/MATLAB/MATLAB_VERSION/bin/glnxa64/cef_resources/matlab_icon.png
