@@ -1,0 +1,1 @@
+sudo ln -sf /usr/bin/sudo /usr/bin/pkexec
