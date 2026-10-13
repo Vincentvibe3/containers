@@ -1,0 +1,7 @@
+{
+	"settings": {
+		"dev.containers.gitCredentialHelperConfigLocation": "none",
+		"dev.containers.copyGitConfig": false
+	},
+	"remoteUser": "${localEnv:USER}"
+}
