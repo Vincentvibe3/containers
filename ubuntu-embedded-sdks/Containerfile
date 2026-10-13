@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y \
 	libglib2.0-0t64 \
 	libwebkit2gtk-4.1-0
 
+COPY stm32cubeide.desktop /usr/share/applications/stm32cubeide.desktop
+COPY nrfconnect.desktop /usr/share/applications/nrfconnect.desktop
+
 COPY setup /usr/share/container-setup/
 
 # Make all init-scripts executable

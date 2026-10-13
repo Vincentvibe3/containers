@@ -1,0 +1,2 @@
+- Use https://github.com/nordicsemi/pc-nrfconnect-launcher/ to provide easy install of nrfconnect sdk with improved generation of desktop file
+- easy export of simplicity studio desktop files

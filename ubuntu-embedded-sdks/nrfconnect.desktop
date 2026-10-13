@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=nRF Connect for Desktop
+GenericName=Development Tools
+Comment=Nordic Semiconductor Desktop Tools
+Exec=/home/$USER/.local/bin/nrfconnect/nrfconnect.AppImage
+Terminal=false
+Type=Application
+Categories=Development;

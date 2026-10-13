@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=STM32CubeIDE
+GenericName=Integrated Development Environment
+Comment=C/C++ development platform for STM32 microcontrollers
+Exec=/home/$USER/.local/bin/STMicroelectronics/STM32Cube/STM32CubeIDE/stm32cubeide_wayland %F
+Terminal=false
+Type=Application
+Categories=Development;IDE;
+StartupWMClass=stm32cubeide
+Icon=/home/$USER/.local/bin/STMicroelectronics/STM32Cube/STM32CubeIDE/icon.xpm
