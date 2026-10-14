@@ -15,8 +15,6 @@ if [[ ! -f /etc/.distrobox-ready ]]; then
 
 	echo "Using user $DISTROBOX_USER to run user scripts" >> /tmp/distrobox_install.log
 
-	su $DISTROBOX_USER -c /usr/share/container-setup/install-brew.sh
-
 	# Call other init scripts
 
 	for file in /usr/share/container-setup/init-scripts/*.sh; do
