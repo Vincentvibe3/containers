@@ -22,7 +22,9 @@ RUN dnf install -y \
     gcc \
     nodejs \
     libatomic \
-    temurin-21-jdk 
+    java-21-openjdk \
+    java-25-openjdk
+    # temurin-21-jdk 
     # temurin-25-jdk 
 
 
