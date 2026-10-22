@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   fedora-common:
-    name: Build fedora common base Image
+    name: Common Fedora base
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -49,7 +49,7 @@ jobs:
           ghcr.io/vincentvibe3/fedora-toolbox-commons:latest, ghcr.io/vincentvibe3/fedora-toolbox-commons:${{github.sha}}
 
   ubuntu-common:
-    name: Build ubuntu common base Image
+    name: Common Ubuntu Base
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -77,8 +77,9 @@ jobs:
         file: ./ubuntu-commons/Containerfile
         tags: |
           ghcr.io/vincentvibe3/ubuntu-toolbox-commons:latest, ghcr.io/vincentvibe3/ubuntu-toolbox-commons:${{github.sha}}
+
   build-ubuntu:
-    name: Build ubuntu based images
+    name: Build Ubuntu images (fast)
     needs: ubuntu-common
     runs-on: ubuntu-latest
     permissions:
@@ -90,7 +91,6 @@ jobs:
       matrix:
         containers:
           # !! Add your recipes here
-          - matlab
           - ubuntu-embedded-sdks
     steps:
       - name: Checkout
@@ -115,8 +115,46 @@ jobs:
           tags: |
             ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
 
+  build-ubuntu-matlab:
+    name: Build Matlab image
+    needs: ubuntu-common
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      fail-fast: false # stop GH from cancelling all matrix builds if one fails
+      matrix:
+        containers:
+          # !! Add your recipes here
+          - matlab
+          
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+        
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: ./${{matrix.containers}}
+          push: true
+          file: ./${{matrix.containers}}/Containerfile
+          tags: |
+            ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
+
   build-fedora:
-    name: Build fedora based images
+    name: Build Fedora images (fast)
     needs: fedora-common
     runs-on: ubuntu-latest
     permissions:
@@ -156,7 +194,7 @@ jobs:
   
   # Separate long running builds that are not required for devcontainers
   build-fedora-long:
-    name: Build fedora based images
+    name: Build Fedora images (slow)
     needs: fedora-common
     runs-on: ubuntu-latest
     permissions:
