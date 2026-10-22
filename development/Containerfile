@@ -22,8 +22,8 @@ RUN dnf install -y \
     gcc \
     nodejs \
     libatomic \
-    temurin-21-jdk \
-    temurin-25-jdk 
+    temurin-21-jdk 
+    # temurin-25-jdk 
 
 
 COPY setup /usr/share/container-setup/
