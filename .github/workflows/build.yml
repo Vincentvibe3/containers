@@ -1,4 +1,4 @@
-name: bluebuild
+name: Container Build/Release
 on:
   schedule:
     - cron:
@@ -129,7 +129,7 @@ jobs:
         containers:
           # !! Add your recipes here
           - matlab
-          
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7

@@ -10,8 +10,8 @@ LABEL com.github.containers.toolbox="true" \
       usage="This image is meant to be used with the toolbox command" \
       summary="Fedora based development toolbox" 
 
-RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
-    /ctx/add-adoptium.sh
+# RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
+#     /ctx/add-adoptium.sh
 
 # Install java in the same step
 # needs the && because the repo needs to be installed first
@@ -24,8 +24,6 @@ RUN dnf install -y \
     libatomic \
     java-21-openjdk \
     java-25-openjdk
-    # temurin-21-jdk 
-    # temurin-25-jdk 
 
 
 COPY setup /usr/share/container-setup/
