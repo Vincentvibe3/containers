@@ -1,5 +1,10 @@
 FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 
+LABEL com.github.containers.toolbox="true" \
+      name="toolbox-tools" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Fedora based container for running various cli tools" 
+
 # Install java in the same step
 # needs the && because the repo needs to be installed first
 RUN dnf install -y \

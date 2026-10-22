@@ -5,6 +5,11 @@ RUN chmod +x /add-adoptium.sh
 
 FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 
+LABEL com.github.containers.toolbox="true" \
+      name="toolbox-development" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Fedora based development toolbox" 
+
 RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
     /ctx/add-adoptium.sh
 

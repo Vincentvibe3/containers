@@ -15,6 +15,11 @@ RUN chmod +x /build/fix-path.sh && /build/fix-path.sh
 
 FROM quay.io/toolbx/ubuntu-toolbox:${UBUNTU_VERSION}
 
+LABEL com.github.containers.toolbox="true" \
+      name="toolbox-matlab" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Ubuntu based container for running latest matlab" 
+
 RUN --mount=type=bind,from=deps_download,src=/build,dst=/build \
 	apt-get update && xargs -a /build/base-dependencies.txt apt-get install -y 
 

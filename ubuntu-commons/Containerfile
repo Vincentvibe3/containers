@@ -5,6 +5,11 @@ RUN chmod +x /brew-config.sh
 
 FROM quay.io/toolbx/ubuntu-toolbox:latest
 
+LABEL com.github.containers.toolbox="true" \
+      name="ubuntu-toolbox-commons" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Common ubuntu layers with additional packages" 
+
 COPY --from=ghcr.io/ublue-os/brew:latest /system_files /
 RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
     /ctx/brew-config.sh

@@ -8,6 +8,11 @@ RUN chmod +x /brew-config.sh
 
 FROM registry.fedoraproject.org/fedora-toolbox:latest
 
+LABEL com.github.containers.toolbox="true" \
+      name="fedora-toolbox-commons" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Custom image based on the fedora-toolbox with additional tools" 
+
 RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
     /ctx/add-rpm-fusion.sh
 

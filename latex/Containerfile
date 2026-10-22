@@ -1,5 +1,10 @@
 FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
 
+LABEL com.github.containers.toolbox="true" \
+      name="toolbox-latex" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Fedora based container for latex editing" 
+
 RUN dnf install -y \
 	texlive-scheme-full
 

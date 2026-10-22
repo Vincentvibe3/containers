@@ -1,5 +1,10 @@
 FROM ghcr.io/vincentvibe3/ubuntu-toolbox-commons:latest
 
+LABEL com.github.containers.toolbox="true" \
+      name="ubuntu-toolbox-commons" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Ubuntu container for running embedded IDEs and tooling" 
+
 RUN apt-get update && apt-get install -y \
 	libfuse2 \
 	libnss3 \
