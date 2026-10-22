@@ -1,1 +1,0 @@
-pnpm i -g @openai/codex
