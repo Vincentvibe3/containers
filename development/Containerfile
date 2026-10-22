@@ -22,7 +22,6 @@ RUN dnf install -y \
     gcc \
     nodejs \
     libatomic \
-    java-21-openjdk \
     java-25-openjdk
 
 
