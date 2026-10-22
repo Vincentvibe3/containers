@@ -129,8 +129,46 @@ jobs:
         containers:
           # !! Add your recipes here
           - development
-          - latex
           - tools
+          
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+        
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: ./${{matrix.containers}}
+          push: true
+          file: ./${{matrix.containers}}/Containerfile
+          tags: |
+            ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
+  
+  # Separate long running builds that are not required for devcontainers
+  build-fedora-long:
+    name: Build fedora based images
+    needs: fedora-common
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      fail-fast: false # stop GH from cancelling all matrix builds if one fails
+      matrix:
+        containers:
+          # !! Add your recipes here
+          - latex
           
     steps:
       - name: Checkout
