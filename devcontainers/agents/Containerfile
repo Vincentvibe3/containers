@@ -14,6 +14,11 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 ENV DISTROBOX_USER=$USERNAME
 
+COPY setup /usr/share/container-setup/
+
+# Make all init-scripts executable
+RUN /usr/share/container-setup/chmod-setup.sh
+
 RUN /usr/share/container-setup/init.sh
 
 USER $USERNAME
