@@ -1,0 +1,36 @@
+{
+	"$schema":"https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
+	"name":"dev-graphical-container",
+	"description": "Mount necessary folders to run graphical apps",
+	"id":"dev-graphical",
+	"version": "1.0.0",
+	"containerEnv": {
+		"XDG_RUNTIME_DIR":"/run/user/1000",
+		"WAYLAND_DISPLAY":"wayland-0",
+		"DISPLAY":":0",
+		"PULSE_SERVER":"/run/user/1000/pulse/native"
+	},
+	"capAdd": ["SYS_ADMIN"],
+	"mounts": [
+		{
+			"source":"/dev/fuse",
+			"target": "/dev/fuse",
+			"type": "bind"
+		},
+		{
+			"source": "/run/user/1000",
+			"target": "/run/user/1000",
+			"type": "bind"
+		},
+		{
+			"source": "/tmp/.X11-unix",
+			"target": "/tmp/.X11-unix",
+			"type": "bind"
+		},
+		{
+			"source": "/run/user/1000",
+			"target": "/run/user/1000",
+			"type": "bind"
+		}
+	]
+}

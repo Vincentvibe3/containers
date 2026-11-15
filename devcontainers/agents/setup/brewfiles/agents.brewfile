@@ -1,4 +1,6 @@
 cask "claude-code"
 brew "anomalyco/tap/opencode-v2", trusted: true
+cask "opencode-desktop"
 cask "codex"
 brew "hermes-agent"
+cask "hermes-desktop"

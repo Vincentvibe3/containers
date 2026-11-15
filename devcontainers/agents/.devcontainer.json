@@ -1,0 +1,8 @@
+{
+	"$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.schema.json",
+	"name": "agents-workspace",
+	"image": "ghcr.io/vincentvibe3/agents-devcontainer:latest",
+	"features": {
+		"ghcr.io/vincentvibe3/containers/dev-graphical:latest": {}
+	}
+}
