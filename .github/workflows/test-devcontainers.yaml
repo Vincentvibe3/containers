@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: mkdir -p /run/user/1000
+      - run: sudo mkdir -p /run/user/1000
         if: ${{ matrix.features == 'dev-graphical' }}
       - name: "Install latest devcontainer CLI"
         run: npm install -g @devcontainers/cli
