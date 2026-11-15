@@ -61,3 +61,5 @@ jobs:
 
       - name: "Testing global scenarios"
         run: devcontainer features test --global-scenarios-only .
+      
+      - run: echo "Force fail" && exit 1
