@@ -6,7 +6,8 @@ LABEL com.github.containers.toolbox="true" \
       summary="Ubuntu container for running embedded IDEs and tooling" 
 
 RUN apt-get update && apt-get install -y \
-	libfuse2 \
+	libfuse2t64 \
+	libfuse3-4 \
 	libnss3 \
 	libnspr4 \
 	libasound2t64 \
