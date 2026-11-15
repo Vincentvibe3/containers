@@ -4,5 +4,9 @@
 	"image": "ghcr.io/vincentvibe3/agents-devcontainer:latest",
 	"features": {
 		"ghcr.io/vincentvibe3/containers/dev-graphical:latest": {}
-	}
+	},
+	"runArgs": [
+    	"--gpus",
+    	"all"
+	]
 }
