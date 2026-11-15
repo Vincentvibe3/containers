@@ -1,9 +1,11 @@
+ARG UBUNTU_VERSION=26.04
+
 FROM docker.io/alpine:latest AS copy_repo
 
 COPY brew-config.sh /brew-config.sh
 RUN chmod +x /brew-config.sh
 
-FROM quay.io/toolbx/ubuntu-toolbox:latest
+FROM quay.io/toolbx/ubuntu-toolbox:${UBUNTU_VERSION}
 
 LABEL com.github.containers.toolbox="true" \
       name="ubuntu-toolbox-commons" \
@@ -17,7 +19,7 @@ RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
 RUN apt-get update && apt-get install -y \
 	neovim \
 	fish \
-	libwlroots12t64 \
+	libwlroots-0.20 \
 	xsel \
 	git \
 	curl \
@@ -27,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 	python3-pip \
 	zstd \
 	pinentry-gnome3 \
-	libicu74 \
+	libicu78 \
 	pass
 
 RUN mkdir /usr/share/container-setup

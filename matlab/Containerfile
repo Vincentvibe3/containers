@@ -24,7 +24,7 @@ RUN --mount=type=bind,from=deps_download,src=/build,dst=/build \
 	apt-get update && xargs -a /build/base-dependencies.txt apt-get install -y 
 
 # Install useful tools for editing and for matlab 	
-RUN apt-get update && apt-get install -y neovim nano build-essential libwlroots12t64 xsel wl-clipboard
+RUN apt-get update && apt-get install -y neovim nano build-essential libwlroots-0.20 xsel wl-clipboard
 
 RUN mkdir -p /usr/share/applications/
 
