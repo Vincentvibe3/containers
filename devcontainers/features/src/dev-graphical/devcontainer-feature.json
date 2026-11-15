@@ -1,5 +1,4 @@
 {
-	"$schema":"https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
 	"name":"dev-graphical-container",
 	"description": "Mount necessary folders to run graphical apps",
 	"id":"dev-graphical",
