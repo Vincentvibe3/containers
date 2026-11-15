@@ -1,4 +1,4 @@
-ARG UBUNTU_VERSION=24.04
+ARG UBUNTU_VERSION=26.04
 ARG MATLAB_VERSION=r2026b
 
 FROM docker.io/alpine:3.14 AS deps_download
@@ -8,7 +8,7 @@ ARG MATLAB_VERSION
 
 RUN apk add --no-cache curl bash
 RUN mkdir /build
-RUN	curl -o /build/base-dependencies.txt "https://raw.githubusercontent.com/mathworks-ref-arch/container-images/refs/heads/main/matlab-deps/$MATLAB_VERSION/ubuntu$UBUNTU_VERSION/base-dependencies.txt"
+RUN	curl -o /build/base-dependencies-amd64.txt "https://raw.githubusercontent.com/mathworks-ref-arch/container-images/refs/heads/main/matlab-deps/$MATLAB_VERSION/ubuntu$UBUNTU_VERSION/base-dependencies.txt"
 COPY matlab.desktop /build/matlab.desktop
 COPY fix-path.sh /build/fix-path.sh
 RUN chmod +x /build/fix-path.sh && /build/fix-path.sh
