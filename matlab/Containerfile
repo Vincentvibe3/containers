@@ -8,7 +8,7 @@ ARG MATLAB_VERSION
 
 RUN apk add --no-cache curl bash
 RUN mkdir /build
-RUN	curl -o /build/base-dependencies-amd64.txt "https://raw.githubusercontent.com/mathworks-ref-arch/container-images/refs/heads/main/matlab-deps/$MATLAB_VERSION/ubuntu$UBUNTU_VERSION/base-dependencies-amd64.txt"
+RUN	curl -o /build/base-dependencies.txt "https://raw.githubusercontent.com/mathworks-ref-arch/container-images/refs/heads/main/matlab-deps/$MATLAB_VERSION/ubuntu$UBUNTU_VERSION/base-dependencies-amd64.txt"
 COPY matlab.desktop /build/matlab.desktop
 COPY fix-path.sh /build/fix-path.sh
 RUN chmod +x /build/fix-path.sh && /build/fix-path.sh
