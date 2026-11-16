@@ -15,6 +15,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
 ENV DISTROBOX_USER=$USERNAME
+ENV HOME=/home/${USERNAME}
+ENV CONTAINER_ID=agents-devcontainer
+ENV SHELL=/usr/bin/fish
 
 COPY setup /usr/share/container-setup/
 
