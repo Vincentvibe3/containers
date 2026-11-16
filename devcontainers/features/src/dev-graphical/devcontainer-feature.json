@@ -23,7 +23,7 @@
 		},
 		{
 			"source": "/tmp/.X11-unix",
-			"target": "/tmp/.X11-unix",
+			"target": "/tmp/.X11-unix:rslave,nosuid,nodev,rbind",
 			"type": "bind"
 		},
 		{
