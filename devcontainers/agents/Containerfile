@@ -6,9 +6,6 @@ ARG USER_GID=$USER_UID
 
 RUN dnf install -y fuse fuse-libs
 
-# Set perms on /tmp
-RUN sudo chmod +rwxt,o+rwxt,g+rwxt /tmp
-
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
@@ -25,5 +22,8 @@ COPY setup /usr/share/container-setup/
 RUN /usr/share/container-setup/chmod-setup.sh
 
 RUN /usr/share/container-setup/init.sh
+
+# Set perms on /tmp
+RUN chmod +rwxt,o+rwxt,g+rwxt /tmp
 
 USER $USERNAME
