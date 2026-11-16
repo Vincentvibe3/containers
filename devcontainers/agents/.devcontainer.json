@@ -5,6 +5,7 @@
 		"ghcr.io/vincentvibe3/containers/dev-graphical:latest": {}
 	},
 	"runArgs": [
+		"--tmpfs=/tmp:rw,exec,nosuid,nodev,mode=1777", // workaround for tmp permission issues until podman 6.1.0
     	"--gpus",
     	"all"
 	]

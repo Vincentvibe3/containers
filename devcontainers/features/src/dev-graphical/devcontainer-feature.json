@@ -17,8 +17,8 @@
 			"type": "bind"
 		},
 		{
-			"source": "/run/user/1000",
-			"target": "/run/user/1000",
+			"source": "/tmp/.X11-unix",
+			"target": "/tmp/.X11-unix,ro",
 			"type": "bind"
 		},
 		{
