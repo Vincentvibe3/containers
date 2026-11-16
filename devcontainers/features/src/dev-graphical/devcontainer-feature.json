@@ -23,7 +23,7 @@
 		},
 		{
 			"source": "/tmp/.X11-unix",
-			"target": "/tmp/.X11-unix,ro,bind-propagation=rslave,nosuid,nodev,rbind",
+			"target": "/tmp/.X11-unix,ro,bind-propagation=rslave",
 			"type": "bind"
 		},
 		{
@@ -31,5 +31,5 @@
 			"target": "/run/user/1000",
 			"type": "bind"
 		}
-	]
+	],
 }
