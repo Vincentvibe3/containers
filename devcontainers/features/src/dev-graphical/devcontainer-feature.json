@@ -2,7 +2,7 @@
 	"name":"dev-graphical-container",
 	"description": "Mount necessary folders to run graphical apps",
 	"id":"dev-graphical",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"containerEnv": {
 		"XDG_RUNTIME_DIR":"/run/user/1000",
 		"WAYLAND_DISPLAY":"wayland-0",
