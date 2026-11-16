@@ -26,7 +26,4 @@ RUN /usr/share/container-setup/chmod-setup.sh
 
 RUN /usr/share/container-setup/init.sh
 
-# Set perms on /tmp
-RUN chmod +rwxt,o+rwxt,g+rwxt /tmp
-
 USER $USERNAME
