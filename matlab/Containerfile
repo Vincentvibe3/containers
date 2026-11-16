@@ -16,7 +16,7 @@ RUN chmod +x /build/fix-path.sh && /build/fix-path.sh
 FROM quay.io/toolbx/ubuntu-toolbox:${UBUNTU_VERSION}
 
 LABEL com.github.containers.toolbox="true" \
-      name="toolbox-matlab" \
+      name="matlab-tbx" \
       usage="This image is meant to be used with the toolbox command" \
       summary="Ubuntu based container for running latest matlab" 
 

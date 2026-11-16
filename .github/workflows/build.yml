@@ -43,11 +43,11 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v7
       with:
-        context: ./fedora-commons
+        context: ./common-fedora
         push: true
-        file: ./fedora-commons/Containerfile
+        file: ./common-fedora/Containerfile
         tags: |
-          ghcr.io/vincentvibe3/fedora-toolbox-commons:latest, ghcr.io/vincentvibe3/fedora-toolbox-commons:${{github.sha}}
+          ghcr.io/vincentvibe3/common-fedora-tbx:latest, ghcr.io/vincentvibe3/common-fedora-tbx:${{github.sha}}
 
   ubuntu-common:
     name: Common Ubuntu Base
@@ -73,11 +73,11 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v7
       with:
-        context: ./ubuntu-commons
+        context: ./common-ubuntu
         push: true
-        file: ./ubuntu-commons/Containerfile
+        file: ./common-ubuntu/Containerfile
         tags: |
-          ghcr.io/vincentvibe3/ubuntu-toolbox-commons:latest, ghcr.io/vincentvibe3/ubuntu-toolbox-commons:${{github.sha}}
+          ghcr.io/vincentvibe3/common-ubuntu-tbx:latest, ghcr.io/vincentvibe3/common-ubuntu-tbx:${{github.sha}}
 
   build-ubuntu:
     name: Build Ubuntu images (fast)
@@ -92,7 +92,7 @@ jobs:
       matrix:
         containers:
           # !! Add your recipes here
-          - ubuntu-embedded-sdks
+          - embedded-sdks-ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -114,7 +114,7 @@ jobs:
           push: true
           file: ./${{matrix.containers}}/Containerfile
           tags: |
-            ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
+            ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:latest, ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:${{github.sha}}
 
   build-ubuntu-matlab:
     name: Build Matlab image
@@ -152,7 +152,7 @@ jobs:
           push: true
           file: ./${{matrix.containers}}/Containerfile
           tags: |
-            ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
+            ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:latest, ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:${{github.sha}}
 
   build-fedora:
     name: Build Fedora images (fast)
@@ -167,8 +167,8 @@ jobs:
       matrix:
         containers:
           # !! Add your recipes here
-          - development
-          - tools
+          - dev-fedora
+          - tools-fedora
           
     steps:
       - name: Checkout
@@ -191,7 +191,7 @@ jobs:
           push: true
           file: ./${{matrix.containers}}/Containerfile
           tags: |
-            ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
+            ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:latest, ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:${{github.sha}}
   
   # Separate long running builds that are not required for devcontainers
   build-fedora-long:
@@ -207,7 +207,7 @@ jobs:
       matrix:
         containers:
           # !! Add your recipes here
-          - latex
+          - latex-fedora
           
     steps:
       - name: Checkout
@@ -230,7 +230,7 @@ jobs:
           push: true
           file: ./${{matrix.containers}}/Containerfile
           tags: |
-            ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:latest, ghcr.io/vincentvibe3/toolbox-${{ matrix.containers }}:${{github.sha}}
+            ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:latest, ghcr.io/vincentvibe3/${{ matrix.containers }}-tbx:${{github.sha}}
 
   build-dev:
     name: Build devcontainers
@@ -270,4 +270,4 @@ jobs:
           push: true
           file: ./devcontainers/${{matrix.containers}}/Containerfile
           tags: |
-            ghcr.io/vincentvibe3/${{ matrix.containers }}-devcontainer:latest, ghcr.io/vincentvibe3/${{ matrix.containers }}-devcontainer:${{github.sha}}
+            ghcr.io/vincentvibe3/${{ matrix.containers }}-devc:latest, ghcr.io/vincentvibe3/${{ matrix.containers }}-devc:${{github.sha}}

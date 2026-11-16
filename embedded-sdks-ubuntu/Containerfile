@@ -1,7 +1,7 @@
-FROM ghcr.io/vincentvibe3/ubuntu-toolbox-commons:latest
+FROM ghcr.io/vincentvibe3/common-ubuntu-tbx:latest
 
 LABEL com.github.containers.toolbox="true" \
-      name="ubuntu-toolbox-commons" \
+      name="embeded-sdks-ubuntu-tbx" \
       usage="This image is meant to be used with the toolbox command" \
       summary="Ubuntu container for running embedded IDEs and tooling" 
 

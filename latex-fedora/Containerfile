@@ -1,7 +1,7 @@
-FROM ghcr.io/vincentvibe3/fedora-toolbox-commons:latest
+FROM ghcr.io/vincentvibe3/common-fedora-tbx:latest
 
 LABEL com.github.containers.toolbox="true" \
-      name="toolbox-latex" \
+      name="latex-fedora-tbx" \
       usage="This image is meant to be used with the toolbox command" \
       summary="Fedora based container for latex editing" 
 

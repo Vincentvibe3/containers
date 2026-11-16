@@ -1,4 +1,4 @@
-FROM ghcr.io/vincentvibe3/toolbox-development:latest
+FROM ghcr.io/vincentvibe3/dev-fedora-tbx:latest
 
 ARG USERNAME=vscode
 ARG USER_UID=1000

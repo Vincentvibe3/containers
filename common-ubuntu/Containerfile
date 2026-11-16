@@ -1,29 +1,25 @@
-FROM docker.io/alpine:latest AS copy_repo
+ARG UBUNTU_VERSION=26.04
 
-COPY add-rpm-fusion.sh /add-rpm-fusion.sh
-RUN chmod +x /add-rpm-fusion.sh
+FROM docker.io/alpine:latest AS copy_repo
 
 COPY brew-config.sh /brew-config.sh
 RUN chmod +x /brew-config.sh
 
-FROM registry.fedoraproject.org/fedora-toolbox:latest
+FROM quay.io/toolbx/ubuntu-toolbox:${UBUNTU_VERSION}
 
 LABEL com.github.containers.toolbox="true" \
-      name="fedora-toolbox-commons" \
+      name="common-ubuntu-tbx" \
       usage="This image is meant to be used with the toolbox command" \
-      summary="Custom image based on the fedora-toolbox with additional tools" 
-
-RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
-    /ctx/add-rpm-fusion.sh
+      summary="Common ubuntu layers with additional packages" 
 
 COPY --from=ghcr.io/ublue-os/brew:latest /system_files /
 RUN --mount=type=bind,from=copy_repo,source=/,target=/ctx \
     /ctx/brew-config.sh
 
-RUN dnf install -y \
+RUN apt-get update && apt-get install -y \
 	neovim \
 	fish \
-	wlroots \
+	libwlroots-0.19 \
 	xsel \
 	git \
 	curl \
@@ -33,7 +29,7 @@ RUN dnf install -y \
 	python3-pip \
 	zstd \
 	pinentry-gnome3 \
-	libicu \
+	libicu78 \
 	pass
 
 RUN mkdir /usr/share/container-setup
