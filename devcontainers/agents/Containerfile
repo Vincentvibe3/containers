@@ -19,11 +19,15 @@ ENV HOME=/home/${USERNAME}
 ENV CONTAINER_ID=agents-devcontainer
 ENV SHELL=/usr/bin/fish
 
+# Remove distrobox specific script
+RUN rm /etc/fish/functions/fish_command_not_found.fish
+
 COPY setup /usr/share/container-setup/
 
 # Make all init-scripts executable
 RUN /usr/share/container-setup/chmod-setup.sh
 
 RUN /usr/share/container-setup/init.sh
+
 
 USER $USERNAME
