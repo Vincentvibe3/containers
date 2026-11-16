@@ -2,7 +2,7 @@
 	"name":"dev-graphical-container",
 	"description": "Mount necessary folders to run graphical apps",
 	"id":"dev-graphical",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"containerEnv": {
 		"XDG_RUNTIME_DIR":"/run/user/1000",
 		"WAYLAND_DISPLAY":"wayland-0",
@@ -19,11 +19,6 @@
 		{
 			"source": "/run/user/1000",
 			"target": "/run/user/1000",
-			"type": "bind"
-		},
-		{
-			"source": "/tmp/.X11-unix",
-			"target": "/tmp/.X11-unix,ro,bind-propagation=rslave",
 			"type": "bind"
 		},
 		{
